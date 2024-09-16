@@ -29,11 +29,12 @@ func main() {
 	}
 
 	result := mrg.UpLowCap(string(file))
-	result = mrg.Aandan(result)
 	result = mrg.HexBin(result)
 	result = mrg.UpLowCapNbr(string(result))
 	result = mrg.Punc(result)
 	result = mrg.Quote(result)
+	result = mrg.Aandan(result)
+	result = result[:len(result)-4]
 	err2 := os.WriteFile(os.Args[2], []byte(result), 0o644)
 	if err2 != nil {
 		fmt.Fprintln(os.Stderr, "Error writing file:", err)
