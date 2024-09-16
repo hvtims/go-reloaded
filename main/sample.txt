@@ -1,1 +1,1 @@
- (cap, 9))
+aa aa aa aa aa aa (up, 6) (cap, 4) (low, 2)

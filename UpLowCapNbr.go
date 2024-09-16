@@ -18,7 +18,7 @@ func UpLowCapNbr(s string) string {
 		for i := 0; i < len(la); i++ {
 			for _, Flag := range Flags {
 				if strings.HasPrefix(la[i], Flag) && i+1 < len(la) && strings.HasSuffix(la[i+1], ")") {
-					
+
 					numberStr := strings.Trim(la[i+1], " )")
 					number, err := strconv.Atoi(numberStr)
 					if err != nil {
@@ -37,21 +37,20 @@ func UpLowCapNbr(s string) string {
 					}
 
 					count := 0
-					for j := i - 1; j >= start && count < number; j-- {
-						if la[j] == "" {
-							continue
+					for j := i - 1; j >= 0 && count < number; j-- {
+						if la[j] != "" {
+							switch Flag {
+							case "(cap,":
+								la[j] = Capitalize(la[j])
+							case "(up,":
+								la[j] = strings.ToUpper(la[j])
+							case "(low,":
+								la[j] = strings.ToLower(la[j])
+							}
+
+							count++
 						}
 
-						switch Flag {
-						case "(cap,":
-							la[j] = Capitalize(la[j])
-						case "(up,":
-							la[j] = strings.ToUpper(la[j])
-						case "(low,":
-							la[j] = strings.ToLower(la[j])
-						}
-
-						count++
 					}
 
 					la[i] = ""
